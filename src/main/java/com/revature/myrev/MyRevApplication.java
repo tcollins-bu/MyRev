@@ -11,6 +11,7 @@ public class MyRevApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MyRevApplication.class, args);
+		// Trigger sonar
 	}
 
 }
