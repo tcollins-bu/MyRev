@@ -10,9 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.revature.myrev.model.Users;
-
 
 //implements UserDetails, part of Spring Security
 //holds user id, username, email, and password from the user
@@ -43,7 +41,8 @@ public class UsersDetailsImpl implements UserDetails {
 		List<GrantedAuthority> authorities = users.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
 
-		return new UsersDetailsImpl(users.getUserId(), users.getUserName(), users.getEmail(), users.getPassword(), authorities);
+		return new UsersDetailsImpl(users.getUserId(), users.getUserName(), users.getEmail(), users.getPassword(),
+				authorities);
 	}
 
 	@Override

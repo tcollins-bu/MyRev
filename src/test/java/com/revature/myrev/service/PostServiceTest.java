@@ -1,6 +1,6 @@
 package com.revature.myrev.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,7 +23,7 @@ import com.revature.myrev.repository.PostRepository;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(false)
 class PostServiceTest {
-	
+
 	/** Mock PostRespository for Mockito testing */
 	@Mock
 	private PostRepository repository;
@@ -32,15 +32,15 @@ class PostServiceTest {
 	@InjectMocks
 	PostService service;
 	/** Used for the initialization & closing of mocked fields */
-    private AutoCloseable closeable;
-	
+	private AutoCloseable closeable;
+
 	@Before
-	public void setUp () {
+	public void setUp() {
 		closeable = MockitoAnnotations.openMocks(this);
 	}
-	
+
 	@After
-	public void releaseMocks () throws Exception {
+	public void releaseMocks() throws Exception {
 		closeable.close();
 	}
 

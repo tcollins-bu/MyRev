@@ -20,41 +20,41 @@ import com.revature.myrev.service.LikesServiceImpl;
 @RestController
 @RequestMapping("/api")
 public class LikesController {
-	
+
 	@Autowired
 	private LikesServiceImpl service;
-	
+
 	@GetMapping("/likes")
 	public List<Likes> findAll() {
 		return service.findAll();
 	}
-	
+
 	@GetMapping("/likesByLid/{like_id}")
 	public List<Likes> findByLikeId(@PathVariable int like_id) {
 		return service.findByLikeId(like_id);
 	}
-	
+
 	@GetMapping("/likesByPid/{post_id}")
 	public List<Likes> findByPostId(@PathVariable int post_id) {
 		return service.findByPostId(post_id);
 	}
-	
+
 	@GetMapping("/likesByUid/{users_id}")
 	public List<Likes> findByUsersId(@PathVariable int users_id) {
 		return service.findByUsersId(users_id);
 	}
-	
+
 	@PostMapping("/likes")
 	public void saveLike(@RequestBody Likes like) {
 		service.saveLike(like);
 	}
-	
+
 	@PutMapping("/likes/{like_id}")
 	public void updateLike(@PathVariable int like_id, @RequestBody Likes like) {
 		like.setLikeId(like_id);
 		service.saveLike(like);
 	}
-	
+
 	@DeleteMapping("/likes/{like_id}")
 	public void deleteLike(@PathVariable int like_id) {
 		service.deleteLike(like_id);

@@ -1,6 +1,5 @@
 package com.revature.myrev.payload;
 
-
 //Class sent by angular upon attempting to log in
 public class LoginRequest {
 

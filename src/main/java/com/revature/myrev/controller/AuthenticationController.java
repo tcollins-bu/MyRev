@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.myrev.model.ERole;
 import com.revature.myrev.model.Role;
 import com.revature.myrev.model.Users;
-import com.revature.myrev.payload.LoginRequest;
-import com.revature.myrev.payload.SignUpRequest;
 import com.revature.myrev.payload.JwtResponse;
+import com.revature.myrev.payload.LoginRequest;
 import com.revature.myrev.payload.MessageResponse;
+import com.revature.myrev.payload.SignUpRequest;
 import com.revature.myrev.repository.RoleRepository;
 import com.revature.myrev.repository.UsersRepository;
 import com.revature.myrev.security.JwtUtils;
@@ -54,39 +54,41 @@ public class AuthenticationController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-		//authenticates user by username and password
+		// authenticates user by username and password
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
-		//generates token for specified user
+		// generates token for specified user
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
 
-		//grabs additional details needed to sent to angular
+		// grabs additional details needed to sent to angular
 		UsersDetailsImpl userDetails = (UsersDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
-		//constructs response including token and user details
+		// constructs response including token and user details
 		return ResponseEntity.ok(
 				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
 	}
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-		//checks if username is already taken
+		// checks if username is already taken
 		if (userRepository.findByUserName(signUpRequest.getUsername()) != null) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
 		}
 
-		// creates new user's account, encoder used to hash password, second 0 and nulls are for values not being filled in at registration
+		// creates new user's account, encoder used to hash password, second 0 and nulls
+		// are for values not being filled in at registration
 		Users users = new Users(0, 0, signUpRequest.getUsername(), encoder.encode(signUpRequest.getPassword()), null,
 				null, signUpRequest.getEmail(), signUpRequest.getFirstname(), signUpRequest.getLastname(), null, null);
 
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
-		//gives new user a user role unless request included specifically the admin role
+		// gives new user a user role unless request included specifically the admin
+		// role
 		if (strRoles == null) {
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -111,7 +113,7 @@ public class AuthenticationController {
 		users.setRoles(roles);
 		userRepository.save(users);
 
-		//user is saved and a success message is sent
+		// user is saved and a success message is sent
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 }

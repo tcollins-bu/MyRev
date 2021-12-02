@@ -22,7 +22,8 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
 
-	//sent to angular when a request is made that requires authorization but said authorization is not there
+	// sent to angular when a request is made that requires authorization but said
+	// authorization is not there
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {

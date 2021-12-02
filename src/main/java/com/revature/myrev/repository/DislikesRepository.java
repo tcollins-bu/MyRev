@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.revature.myrev.model.Dislikes;
 
 @Repository
-public interface DislikesRepository extends JpaRepository<Dislikes, Integer>{
-	
+public interface DislikesRepository extends JpaRepository<Dislikes, Integer> {
+
 	public List<Dislikes> findByUsersId(int uid);
-	
+
 	public List<Dislikes> findByDislikeId(int did);
-	
+
 	public List<Dislikes> findByPostId(int pid);
-	
+
 }

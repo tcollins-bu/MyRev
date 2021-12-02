@@ -11,7 +11,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class RegisterStepDefinition {
-	
+
 	WebDriver driver = new ChromeDriver();
 
 	@Given("^User is on Registration Page$")
@@ -23,13 +23,14 @@ public class RegisterStepDefinition {
 	}
 
 	@When("^User enters Username \"(.*)\", First Name \"(.*)\", Last Name \"(.*)\", Email \"(.*)\", Password 1 \"(.*)\" & Password 2 \"(.*)\"$")
-	public void user_enters_credentials_to_login(String username, String firstName, String lastName, String email, String password1, String password2) {
-        driver.findElement(By.name("username")).sendKeys(username);
-        driver.findElement(By.name("firstName")).sendKeys(firstName);
-        driver.findElement(By.name("lastName")).sendKeys(lastName);
-        driver.findElement(By.name("email")).sendKeys(email);
-        driver.findElement(By.name("password1")).sendKeys(password1);
-        driver.findElement(By.name("password2")).sendKeys(password2);
+	public void user_enters_credentials_to_login(String username, String firstName, String lastName, String email,
+			String password1, String password2) {
+		driver.findElement(By.name("username")).sendKeys(username);
+		driver.findElement(By.name("firstName")).sendKeys(firstName);
+		driver.findElement(By.name("lastName")).sendKeys(lastName);
+		driver.findElement(By.name("email")).sendKeys(email);
+		driver.findElement(By.name("password1")).sendKeys(password1);
+		driver.findElement(By.name("password2")).sendKeys(password2);
 		throw new io.cucumber.java.PendingException();
 	}
 
@@ -57,10 +58,10 @@ public class RegisterStepDefinition {
 		driver.findElement(By.name("btnLogin")).click();
 		throw new io.cucumber.java.PendingException();
 	}
-	
+
 	@Then("^Go to the home page$")
 	public void go_to_the_home_page() {
-	    driver.get("http://localhost:4200/");
-	    throw new io.cucumber.java.PendingException();
+		driver.get("http://localhost:4200/");
+		throw new io.cucumber.java.PendingException();
 	}
 }

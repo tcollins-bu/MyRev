@@ -1,6 +1,6 @@
 package com.revature.myrev.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.After;
 import org.junit.Before;
@@ -14,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.myrev.MyRevApplication;
 import com.revature.myrev.repository.FollowerRepository;
 
@@ -25,7 +23,7 @@ import com.revature.myrev.repository.FollowerRepository;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Rollback(false)
 class FollowerServiceImplTest {
-	
+
 	/** Mock FollowerRespository for Mockito testing */
 	@Mock
 	private FollowerRepository repository;
@@ -34,15 +32,15 @@ class FollowerServiceImplTest {
 	@InjectMocks
 	FollowerService service;
 	/** Used for the initialization & closing of mocked fields */
-    private AutoCloseable closeable;
-	
+	private AutoCloseable closeable;
+
 	@Before
-	public void setUp () {
+	public void setUp() {
 		closeable = MockitoAnnotations.openMocks(this);
 	}
-	
+
 	@After
-	public void releaseMocks () throws Exception {
+	public void releaseMocks() throws Exception {
 		closeable.close();
 	}
 

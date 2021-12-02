@@ -14,10 +14,10 @@ public class Dislikes {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "dislike_id")
 	private int dislikeId;
-	
+
 	@Column(name = "User_id")
 	private int usersId;
-	
+
 	@Column(name = "post_id")
 	private int postId;
 
@@ -61,5 +61,5 @@ public class Dislikes {
 	public String toString() {
 		return "Disdislikes [dislikeId=" + dislikeId + ", usersId=" + usersId + ", postId=" + postId + "]";
 	}
-	
+
 }

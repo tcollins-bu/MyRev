@@ -1,6 +1,6 @@
 package com.revature.myrev.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -19,8 +19,8 @@ import com.revature.myrev.MyRevApplication;
 @Rollback(false)
 @DataJpaTest
 class FollowerRepositoryTest {
-	
-	// Not mocking anything here. 
+
+	// Not mocking anything here.
 	// Be sure to delete any additions made to table at the end of each test
 	/** FollowerRepository for testing */
 	@Autowired

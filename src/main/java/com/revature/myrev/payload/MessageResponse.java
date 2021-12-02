@@ -1,6 +1,5 @@
 package com.revature.myrev.payload;
 
-
 //simple string response to angular
 public class MessageResponse {
 	private String message;

@@ -3,13 +3,13 @@
  */
 package com.revature.myrev.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
 import com.revature.myrev.payload.SignUpRequest;
-
-import java.util.Set;
 
 /**
  * @author Dipanjali Ghosh

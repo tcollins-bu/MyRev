@@ -22,20 +22,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @RequestMapping("/api")
 @EnableSwagger2
 public class FollowerController {
-	
+
 	@Autowired
 	private FollowerService followerService;
-	
-	
-	
+
 	@GetMapping("/findFollowers/{followedId}")
 	public List<Follower> findByFollowedId(@PathVariable int followedId) {
 		// TODO Auto-generated method stub
 		return followerService.findByFollowedId(followedId);
 	}
-	
+
 	@GetMapping("/isFollowing/{followedId},{followerId}")
-	public Follower findByFollowedIdAndFollowerId(@PathVariable int followedId,@PathVariable int followerId) {
+	public Follower findByFollowedIdAndFollowerId(@PathVariable int followedId, @PathVariable int followerId) {
 		// TODO Auto-generated method stub
 		return followerService.findByFollowedIdAndFollowerId(followedId, followerId);
 	}
@@ -55,20 +53,19 @@ public class FollowerController {
 	@PostMapping("/followers")
 	public void save(Follower follower) {
 		followerService.save(follower);
-		
+
 	}
 
 	@PutMapping("/followers/{id}")
 	public void update(@PathVariable int id, Follower follower) {
 		followerService.save(follower);
-		
+
 	}
 
 	@DeleteMapping("/followers/{id}")
 	public void delete(@PathVariable int id) {
 		followerService.deleteById(id);
-		
+
 	}
-	
 
 }

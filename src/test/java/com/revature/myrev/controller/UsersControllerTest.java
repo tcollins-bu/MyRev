@@ -1,17 +1,11 @@
 package com.revature.myrev.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -19,9 +13,7 @@ import org.junit.Before;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -34,15 +26,12 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.myrev.MyRevApplication;
 import com.revature.myrev.exception.ObjectNotFoundException;
 import com.revature.myrev.model.Users;
-import com.revature.myrev.service.UsersService;
-import com.revature.myrev.controller.UserController;
 // change import once everyone has all cases of user switched to users
 //import com.revature.myrev.service.UsersServiceImpl;
 import com.revature.myrev.service.UsersServiceImpl;
@@ -70,7 +59,6 @@ class UsersControllerTest {
 	/** Useful for reading & writing JSON to & from POJOS */
 	private ObjectMapper mapper = new ObjectMapper();
 	private JacksonTester<Users> json;
-
 
 	@Before
 	public void setUp() {
@@ -104,9 +92,10 @@ class UsersControllerTest {
 	}
 
 	/**
-	 *  Test for NOT_FOUND HttpStatus when passed an invalid user name or the table is empty
-	 *  
-	 *  @throws Exception when a user is not found
+	 * Test for NOT_FOUND HttpStatus when passed an invalid user name or the table
+	 * is empty
+	 * 
+	 * @throws Exception when a user is not found
 	 */
 	@Test
 	public void testUserNotFound() throws Exception {
@@ -116,12 +105,12 @@ class UsersControllerTest {
 		MockHttpServletResponse response = mvc
 				.perform(get("/users/findByUserName/test123").accept(MediaType.APPLICATION_JSON)).andReturn()
 				.getResponse();
-		
+
 		Assert.assertTrue(response.getStatus() == HttpStatus.NOT_FOUND.value());
-        verify(service, times(1)).findByUserName("test123");
+		verify(service, times(1)).findByUserName("test123");
 	}
-	
- // Adding new user
+
+	// Adding new user
 	@Test
 	public void addUser() throws Exception {
 		Users user1 = new Users(200, 40, "test333", "password", "male", "photo", "email@gmail.com", "Fname", "Lname",
@@ -131,8 +120,8 @@ class UsersControllerTest {
 
 		String json = mapper.writeValueAsString(user1);
 		MockHttpServletResponse response = mvc
-				.perform(post("/users/addUser").contentType(MediaType.APPLICATION_JSON).content(json))
-				.andReturn().getResponse();
+				.perform(post("/users/addUser").contentType(MediaType.APPLICATION_JSON).content(json)).andReturn()
+				.getResponse();
 
 		Assert.assertTrue(response.getStatus() == HttpStatus.OK.value());
 

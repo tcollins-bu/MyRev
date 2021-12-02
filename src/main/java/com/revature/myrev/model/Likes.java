@@ -10,15 +10,15 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Likes {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "like_id")
 	private int likeId;
-	
+
 	@Column(name = "User_id")
 	private int usersId;
-	
+
 	@Column(name = "post_id")
 	private int postId;
 
@@ -62,7 +62,5 @@ public class Likes {
 	public String toString() {
 		return "Likes [likeId=" + likeId + ", usersId=" + usersId + ", postId=" + postId + "]";
 	}
-	
-	
 
 }

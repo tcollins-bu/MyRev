@@ -10,7 +10,7 @@ import com.revature.myrev.repository.DislikesRepository;
 
 @Service
 public class DislikesServiceImpl implements DislikesService {
-	
+
 	@Autowired
 	DislikesRepository repository;
 

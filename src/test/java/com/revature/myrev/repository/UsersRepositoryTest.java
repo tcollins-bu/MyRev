@@ -26,7 +26,7 @@ class UsersRepositoryTest {
 	private UsersRepository repository;
 
 	/**
-	 * Tests for a successful addition to the user table 
+	 * Tests for a successful addition to the user table
 	 */
 	@Test
 	@Order(1)
@@ -42,29 +42,26 @@ class UsersRepositoryTest {
 	}
 
 	/**
-	 * Tests findByUserName
-	 * Both positive and negative tests
+	 * Tests findByUserName Both positive and negative tests
 	 */
 	@Test
 	@Order(2)
 	public void testFindByUsername() {
 		// Test on empty table
 		Users result = repository.findByUserName("user1");
-		
+
 		Assertions.assertNull(result);
-		
-		
+
 		// Test on nonempty table with invalid user name
 		Users testUser = new Users(0, 20, "Tester1234", "test123", "Female", "null", "test@revature.com", "Test",
 				"Testing", "JUnit", "Tester");
 		repository.save(testUser);
-		
+
 		result = repository.findByUserName("user1");
-		
+
 		Assertions.assertNull(result);
-		
-		
-        // Test on nonempty table with valid user name
+
+		// Test on nonempty table with valid user name
 		result = repository.findByUserName(testUser.getUserName());
 
 		Assertions.assertNotNull(result);

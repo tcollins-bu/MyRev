@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.myrev.exception.ObjectNotFoundException;
 import com.revature.myrev.model.Users;
@@ -20,7 +19,8 @@ public class UsersServiceImpl implements UsersService {
 	 * Requests user from the repository that matches the given user name
 	 * 
 	 * @param username The user name associated with the user to be retrieved.
-	 * @throws ObjectNotFoundException Throws an exception when a user associated with the given user name is not retrieved.
+	 * @throws ObjectNotFoundException Throws an exception when a user associated
+	 *                                 with the given user name is not retrieved.
 	 * @return The user associated with the given user name.
 	 */
 	@Override
@@ -28,7 +28,7 @@ public class UsersServiceImpl implements UsersService {
 		Users user = userRepository.findByUserName(username);
 		if (user == null) {
 			throw new ObjectNotFoundException("User Record Not Found");
-		} 
+		}
 		return user;
 	}
 
@@ -65,5 +65,5 @@ public class UsersServiceImpl implements UsersService {
 	public List<Users> findAll() {
 		// TODO Auto-generated method stub
 		return userRepository.findAll();
-  }
+	}
 }

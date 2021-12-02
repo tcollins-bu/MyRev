@@ -2,7 +2,6 @@ package com.revature.myrev.payload;
 
 import java.util.List;
 
-
 //returns this class to angular
 //includes the authentication token, its type, user id, username, email, and roles (for authorization)
 public class JwtResponse {

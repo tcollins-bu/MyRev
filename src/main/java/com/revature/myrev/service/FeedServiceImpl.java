@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.myrev.repository.FeedRepository;
 import com.revature.myrev.model.Feed;
+import com.revature.myrev.repository.FeedRepository;
 
 @Service
 public class FeedServiceImpl implements FeedService {

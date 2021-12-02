@@ -5,9 +5,9 @@ import java.util.List;
 import com.revature.myrev.model.Users;
 
 public interface UsersService {
-	
-    public Users findByUserName(String username);
-	
+
+	public Users findByUserName(String username);
+
 	public List<Users> findAll();
 
 	public Users findById(int id);

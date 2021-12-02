@@ -1,6 +1,6 @@
 package com.revature.myrev.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.After;
 import org.junit.Before;

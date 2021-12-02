@@ -2,7 +2,6 @@ package com.revature.myrev.payload;
 
 import java.util.Set;
 
-
 //Class sent by angular upon attempting to sign up, 
 //only sets up a user with username, name, email, password, and roles(for access authorization)
 //more can be added if more details are to be set up at registration
@@ -83,5 +82,4 @@ public class SignUpRequest {
 				+ ", email=" + email + ", password=" + password + ", role=" + role + "]";
 	}
 
-	
 }

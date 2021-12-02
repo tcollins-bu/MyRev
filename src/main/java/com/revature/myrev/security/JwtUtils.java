@@ -25,23 +25,22 @@ public class JwtUtils {
 	@Value("${revature.app.jwtExpirationMs}")
 	private int jwtExpirationMs;
 
-	
-	//builds a token using details from log in request
+	// builds a token using details from log in request
 	public String generateJwtToken(Authentication authentication) {
-		
+
 		UsersDetailsImpl usersPrincipal = (UsersDetailsImpl) authentication.getPrincipal();
-		//returns token built to expire in 240 hours 
+		// returns token built to expire in 240 hours
 		return Jwts.builder().setSubject((usersPrincipal.getUsername())).setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
 				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
 	}
 
-	//returns username from a token
+	// returns username from a token
 	public String getUserNameFromJwtToken(String token) {
 		return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
 	}
 
-	//checks if a token is valid, if not, returns the reason
+	// checks if a token is valid, if not, returns the reason
 	public boolean validateJwtToken(String authToken) {
 		try {
 			Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);

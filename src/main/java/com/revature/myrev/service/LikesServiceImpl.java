@@ -10,7 +10,7 @@ import com.revature.myrev.repository.LikesRepository;
 
 @Service
 public class LikesServiceImpl implements LikesService {
-	
+
 	@Autowired
 	LikesRepository repository;
 

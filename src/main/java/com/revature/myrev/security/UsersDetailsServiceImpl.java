@@ -20,14 +20,13 @@ public class UsersDetailsServiceImpl implements UserDetailsService {
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Users users = null;
-		try{
+		try {
 			users = userRepository.findByUserName(username);
-		}
-		catch(UsernameNotFoundException e) {
+		} catch (UsernameNotFoundException e) {
 			throw new UsernameNotFoundException("User Not Found with username: " + username);
 
 		}
-		if(users == null) // Null pointer exceptions were happening.
+		if (users == null) // Null pointer exceptions were happening.
 			return null;
 		else
 			return UsersDetailsImpl.build(users);
