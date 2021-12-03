@@ -93,6 +93,7 @@ class PostRepositoryTest {
 
 	public void findAllPostsTest() {
 		Post test = new Post();
+		repository.save(test);
 		List<Post> posts = repository.findAll();
 		Assertions.assertNotEquals(0, posts.size());
 	}
