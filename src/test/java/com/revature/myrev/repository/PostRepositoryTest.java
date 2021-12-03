@@ -74,7 +74,7 @@ class PostRepositoryTest {
 	public void findPostByDateTest() {
 		Post result = new Post(1, "content", 1, new Date(0), "testUrl", 1, "post");
 
-		Assertions.assertNotEquals(0, result.getPostDate());
+		Assertions.assertEquals(new Date(0), result.getPostDate());
 	}
 
 	@Test
